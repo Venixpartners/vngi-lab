@@ -222,3 +222,17 @@ button { font: inherit; cursor: pointer; }
   border: 1px solid rgba(226,232,240,0.16); background: rgba(3,59,189,0.08);
   padding: 34px 30px; margin: 20px 0 80px;
 }
+
+/* journey */
+.progress-strip {
+  font-family: "Inter", system-ui, sans-serif; font-size: 14px; color: var(--slate);
+  margin-top: 22px;
+}
+.progress-strip strong { color: var(--white); }
+.gapband {
+  border: 1px solid var(--blue); background: rgba(3,59,189,0.1);
+  padding: 26px 28px; margin: 26px 0 14px;
+}
+.gapband h3 { font-family: "Inter", system-ui, sans-serif; font-weight: 700; font-size: 20px; color: var(--white); margin: 8px 0 10px; }
+.gapband p { font-family: "Montserrat", Georgia, sans-serif; font-size: 14px; line-height: 1.65; color: var(--mist); max-width: 720px; }
+.week-sub { font-family: "Inter", system-ui, sans-serif; font-size: 15px; color: var(--slate); text-transform: none; letter-spacing: 0.02em; }

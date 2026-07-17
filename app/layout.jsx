@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
           </header>
           {children}
           <footer className="footer">
-            <span>Venix NextGen Initiative Ltd/Gte (RC 9688595) | Lagos, Nigeria</span>
+            <span>Venix NextGen Initiative Ltd/Gte (RC 9688595) | Lagos, Nigeria | <Link href="/policies" className="footlink">Policies</Link></span>
             <span>Innovate. Elevate. NextGen.</span>
           </footer>
         </div>

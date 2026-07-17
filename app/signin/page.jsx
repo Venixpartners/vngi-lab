@@ -122,6 +122,7 @@ function SignInInner() {
       </p>
       <p className="authswitch" style={{ marginTop: 6 }}>
         An account keeps your scores, your leaderboard name and your progress in one place.
+        By creating an account you agree to our <a href="/policies" style={{ color: "var(--blue)", textDecoration: "underline" }}>policies</a>.
       </p>
     </main>
   );

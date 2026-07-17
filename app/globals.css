@@ -243,3 +243,20 @@ button { font: inherit; cursor: pointer; }
 .gapband h3 { font-family: "Inter", system-ui, sans-serif; font-weight: 700; font-size: 20px; color: var(--white); margin: 8px 0 10px; }
 .gapband p { font-family: "Montserrat", Georgia, sans-serif; font-size: 14px; line-height: 1.65; color: var(--mist); max-width: 720px; }
 .week-sub { font-family: "Inter", system-ui, sans-serif; font-size: 15px; color: var(--slate); text-transform: none; letter-spacing: 0.02em; }
+
+/* policies */
+.policy-wrap { padding-bottom: 70px; }
+.policy-toc { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 24px; font-family: "Inter", system-ui, sans-serif; font-size: 13px; }
+.policy-toc a { color: var(--blue); border: 1px solid rgba(3,59,189,0.45); padding: 8px 14px; }
+.policy-toc a:hover { background: rgba(3,59,189,0.12); }
+.policy-section { max-width: 760px; margin-top: 26px; }
+.policy-section h2 {
+  font-family: "Anton", "Arial Narrow", sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 26px; color: var(--white); margin: 34px 0 14px;
+  border-bottom: 1px solid rgba(226,232,240,0.15); padding-bottom: 8px;
+}
+.policy-section h3 { font-family: "Inter", system-ui, sans-serif; font-size: 16px; color: var(--blue); margin: 20px 0 8px; }
+.policy-section p { font-family: "Montserrat", Georgia, sans-serif; font-size: 15px; line-height: 1.75; color: var(--mist); margin-bottom: 14px; }
+.policy-section strong { color: var(--white); }
+.policy-foot { font-family: "Inter", system-ui, sans-serif; font-size: 12.5px; color: var(--slate); max-width: 760px; margin-top: 40px; line-height: 1.7; }
+.footlink { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }

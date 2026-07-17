@@ -78,6 +78,7 @@ export default function Player({ challenge, user }) {
 
   return (
     <main className="play-wrap">
+      <Link href="/challenges" className="backlink">&#8592; Back to your journey</Link>
       <p className="eyebrow">
         {challenge.category} | {challenge.difficulty}
       </p>

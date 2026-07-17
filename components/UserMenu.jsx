@@ -39,9 +39,9 @@ export default function UserMenu() {
 
   return (
     <span className="usermenu">
-      <span className="usermenu-name" title={user.email}>
+      <Link href="/profile" className="usermenu-name" title="Your profile">
         {name}
-      </span>
+      </Link>
       <button className="usermenu-out" onClick={signOut}>
         Sign out
       </button>

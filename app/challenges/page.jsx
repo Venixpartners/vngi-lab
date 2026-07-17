@@ -105,8 +105,8 @@ export default function Challenges() {
             </h2>
             <div className="cards" style={{ paddingBottom: 34 }}>
               {weeks[w].map((c) => (
-                <Link key={c.slug} href={`/play/${c.slug}`} className="card">
-                  <span className="cat">{c.track} | {c.category}</span>
+                <Link key={c.slug} href={`/play/${c.slug}`} className={best[c.id] ? "card done" : "card"}>
+                  <span className="cat">{c.track} | {c.category}{best[c.id] ? <span className="donetag">Done</span> : null}</span>
                   <h3>{c.title}</h3>
                   <p>{c.intro.length > 150 ? c.intro.slice(0, 147) + "..." : c.intro}</p>
                   <span className="meta">

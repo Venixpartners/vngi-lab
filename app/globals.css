@@ -260,3 +260,51 @@ button { font: inherit; cursor: pointer; }
 .policy-section strong { color: var(--white); }
 .policy-foot { font-family: "Inter", system-ui, sans-serif; font-size: 12.5px; color: var(--slate); max-width: 760px; margin-top: 40px; line-height: 1.7; }
 .footlink { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+
+/* back link and completion */
+.backlink {
+  display: inline-block; font-family: "Inter", system-ui, sans-serif; font-size: 13px;
+  color: var(--slate); margin-bottom: 18px; text-decoration: none;
+}
+.backlink:hover { color: var(--blue); }
+.card.done { border-left: 3px solid var(--blue); }
+.donetag {
+  font-family: "Inter", system-ui, sans-serif; font-size: 10.5px; font-weight: 700;
+  color: var(--white); background: var(--blue); padding: 2px 8px; margin-left: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle;
+}
+
+/* profile & navigation */
+.backlink {
+  display: inline-block; font-family: "Inter", system-ui, sans-serif; font-size: 13px;
+  color: var(--slate); margin-bottom: 18px;
+}
+.backlink:hover { color: var(--white); }
+.ranktitle { font-family: "Inter", system-ui, sans-serif; font-size: 14px; color: var(--blue); margin-bottom: 26px; }
+.stat-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; max-width: 760px; }
+.tile { border: 1px solid rgba(226,232,240,0.14); padding: 16px 16px 13px; background: rgba(226,232,240,0.03); }
+.tile-num { display: block; font-family: "Anton", "Arial Narrow", sans-serif; font-size: 26px; color: var(--white); }
+.tile-label { display: block; font-family: "Inter", system-ui, sans-serif; font-size: 11.5px; color: var(--slate); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+.profile-h2 {
+  font-family: "Anton", "Arial Narrow", sans-serif; font-weight: 400; text-transform: uppercase;
+  font-size: 20px; color: var(--white); margin: 34px 0 12px;
+}
+.badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; max-width: 760px; }
+.badge { border: 1px solid rgba(226,232,240,0.12); padding: 12px 14px; opacity: 0.45; }
+.badge.earned { border-color: rgba(3,59,189,0.6); background: rgba(3,59,189,0.1); opacity: 1; }
+.badge-name { display: block; font-family: "Inter", system-ui, sans-serif; font-weight: 700; font-size: 13.5px; color: var(--white); }
+.badge.earned .badge-name { color: var(--blue); filter: brightness(1.5); }
+.badge-desc { display: block; font-family: "Inter", system-ui, sans-serif; font-size: 12px; color: var(--slate); margin-top: 3px; line-height: 1.45; }
+.namerow { display: flex; gap: 10px; max-width: 480px; }
+.namerow .field { flex: 1; }
+.history { max-width: 760px; }
+.hrow {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 14px;
+  border-bottom: 1px solid rgba(226,232,240,0.09); padding: 10px 0;
+  font-family: "Inter", system-ui, sans-serif; font-size: 13.5px;
+}
+.htitle { color: var(--white); font-weight: 600; }
+.hscore { color: var(--blue); font-weight: 700; text-align: right; filter: brightness(1.4); }
+.hmeta { color: var(--slate); font-size: 12.5px; }
+.hdate { color: var(--slate); font-size: 12.5px; text-align: right; }
+.profile-wrap { padding-bottom: 70px; }

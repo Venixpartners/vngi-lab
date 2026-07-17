@@ -22,6 +22,7 @@ export default function Player({ challenge, user }) {
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [saveState, setSaveState] = useState(null);
 
   function toggleFlag(id) {
     if (submitted) return;

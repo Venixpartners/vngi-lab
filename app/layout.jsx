@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
               <Link href="/">About</Link>
               <Link href="/challenges">Challenges</Link>
               <Link href="/leaderboard">Leaderboard</Link>
-              <a href="https://venixnextgen.org" target="_blank" rel="noreferrer">venixnextgen.org</a>
+              <a href="https://venixnextgen.org" target="_blank" rel="noreferrer">VNGI Website</a>
               <UserMenu />
             </nav>
           </header>

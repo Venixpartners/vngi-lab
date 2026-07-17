@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
         <div className="container">
           <header className="topbar">
             <Link href="/" className="wordmark" aria-label="VNGI Lab home">
-              <strong>VNGI Lab</strong>
-              <span>Reverse Engine</span>
+              <img src="/logo-reversed.png" alt="Venix NextGen" className="logo-img" />
+              <span className="logo-lab">LAB</span>
             </Link>
             <nav className="nav" aria-label="Main">
               <Link href="/">About</Link>

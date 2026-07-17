@@ -29,7 +29,14 @@ button { font: inherit; cursor: pointer; }
   padding: 18px 0;
   border-bottom: 1px solid rgba(226, 232, 240, 0.12);
 }
-.wordmark { display: flex; align-items: baseline; gap: 10px; }
+.wordmark { display: flex; align-items: center; gap: 12px; }
+.logo-img { height: 36px; width: auto; display: block; }
+.logo-lab {
+  font-family: "Anton", "Arial Narrow", sans-serif; font-size: 21px; color: var(--blue);
+  letter-spacing: 0.1em; padding-left: 12px; border-left: 1px solid rgba(226,232,240,0.25);
+  line-height: 1;
+}
+@media (max-width: 560px) { .logo-img { height: 28px; } .logo-lab { font-size: 17px; } }
 .wordmark strong {
   font-family: "Anton", "Arial Narrow", sans-serif;
   font-size: 22px; letter-spacing: 0.04em; color: var(--white);

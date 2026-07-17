@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { supabase } from "../lib/supabase";
 
 const POINTS_PER_ERROR = 10;
 const FALSE_FLAG_PENALTY = 3;
 
-export default function Player({ challenge }) {
+export default function Player({ challenge, user }) {
   const segments = challenge.segments || [];
   const errorIds = useMemo(
     () => new Set(segments.filter((s) => s.is_error).map((s) => s.id)),
@@ -15,33 +15,13 @@ export default function Player({ challenge }) {
   );
   const maxScore = errorIds.size * POINTS_PER_ERROR;
 
-  const [name, setName] = useState("");
-  const [nameSet, setNameSet] = useState(false);
+  const name =
+    user?.user_metadata?.display_name ||
+    (user?.email || "Examiner").split("@")[0].slice(0, 24);
   const [flags, setFlags] = useState(new Set());
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [saveState, setSaveState] = useState(null);
-  const [userId, setUserId] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      const u = data.session?.user;
-      if (u) {
-        setUserId(u.id);
-        const authName =
-          u.user_metadata?.display_name || (u.email || "").split("@")[0].slice(0, 24);
-        setName(authName);
-        setNameSet(true);
-        return;
-      }
-      const stored = typeof window !== "undefined" && localStorage.getItem("vngi_name");
-      if (stored) {
-        setName(stored);
-        setNameSet(true);
-      }
-    });
-  }, []);
 
   function toggleFlag(id) {
     if (submitted) return;
@@ -50,14 +30,6 @@ export default function Player({ challenge }) {
       next.has(id) ? next.delete(id) : next.add(id);
       return next;
     });
-  }
-
-  function confirmName() {
-    const clean = name.trim().slice(0, 24);
-    if (clean.length < 2) return;
-    localStorage.setItem("vngi_name", clean);
-    setName(clean);
-    setNameSet(true);
   }
 
   async function submit() {
@@ -81,7 +53,7 @@ export default function Player({ challenge }) {
         found,
         missed,
         false_flags: falseFlags,
-        user_id: userId,
+        user_id: user.id,
       });
       setSaveState(error ? "error" : "saved");
     } catch (e) {
@@ -113,27 +85,7 @@ export default function Player({ challenge }) {
       </h1>
       <p className="brief">{challenge.intro}</p>
 
-      {!nameSet && (
-        <div>
-          <p className="section-sub">Enter a display name to record your score.</p>
-          <div className="namegate">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && confirmName()}
-              placeholder="Your name or handle"
-              maxLength={24}
-              aria-label="Display name"
-            />
-            <button className="btn" onClick={confirmName}>
-              Start
-            </button>
-          </div>
-        </div>
-      )}
-
-      {nameSet && (
-        <>
+      <>
           <div className="paper">
             <div className="paper-head">
               <span>AI-generated document</span>
@@ -215,7 +167,7 @@ export default function Player({ challenge }) {
                 })}
               </div>
               <div className="play-actions">
-                <Link href="/" className="btn">
+                <Link href="/challenges" className="btn">
                   Next challenge
                 </Link>
                 <Link href="/leaderboard" className="btn ghost">
@@ -225,7 +177,6 @@ export default function Player({ challenge }) {
             </section>
           )}
         </>
-      )}
     </main>
   );
 }

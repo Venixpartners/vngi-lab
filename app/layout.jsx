@@ -27,7 +27,8 @@ export default function RootLayout({ children }) {
               <span>Reverse Engine</span>
             </Link>
             <nav className="nav" aria-label="Main">
-              <Link href="/">Challenges</Link>
+              <Link href="/">About</Link>
+              <Link href="/challenges">Challenges</Link>
               <Link href="/leaderboard">Leaderboard</Link>
               <a href="https://venixnextgen.org" target="_blank" rel="noreferrer">venixnextgen.org</a>
               <UserMenu />

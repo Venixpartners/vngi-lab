@@ -1,17 +1,41 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "../../../lib/supabase";
 import Player from "../../../components/Player";
 
-export const revalidate = 60;
+export default function PlayPage({ params }) {
+  const router = useRouter();
+  const [challenge, setChallenge] = useState(undefined);
+  const [user, setUser] = useState(null);
 
-export default async function PlayPage({ params }) {
-  const { data: challenge } = await supabase
-    .from("challenges")
-    .select("id,slug,title,category,difficulty,intro,segments")
-    .eq("slug", params.id)
-    .eq("active", true)
-    .single();
+  useEffect(() => {
+    supabase.auth.getSession().then(async ({ data }) => {
+      if (!data.session) {
+        router.replace("/signin");
+        return;
+      }
+      setUser(data.session.user);
+      const { data: row } = await supabase
+        .from("challenges")
+        .select("id,slug,title,category,difficulty,intro,segments")
+        .eq("slug", params.id)
+        .eq("active", true)
+        .single();
+      setChallenge(row || null);
+    });
+  }, [params.id, router]);
 
-  if (!challenge) {
+  if (challenge === undefined) {
+    return (
+      <main className="play-wrap">
+        <p className="section-sub">Preparing the document...</p>
+      </main>
+    );
+  }
+
+  if (challenge === null) {
     return (
       <main className="play-wrap">
         <h2 className="section-title">Challenge not found</h2>
@@ -20,5 +44,5 @@ export default async function PlayPage({ params }) {
     );
   }
 
-  return <Player challenge={challenge} />;
+  return <Player challenge={challenge} user={user} />;
 }

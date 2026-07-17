@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "../../lib/supabase";
 
-export default function SignIn() {
+function SignInInner() {
   const router = useRouter();
-  const [mode, setMode] = useState("signin");
+  const search = useSearchParams();
+  const [mode, setMode] = useState(search.get("mode") === "signup" ? "signup" : "signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -31,7 +32,7 @@ export default function SignIn() {
         if (error) throw error;
         if (data.session) {
           localStorage.setItem("vngi_name", displayName.trim().slice(0, 24));
-          router.push("/");
+          router.push("/challenges");
         } else {
           setNotice({
             kind: "ok",
@@ -45,7 +46,7 @@ export default function SignIn() {
         const name =
           data.user?.user_metadata?.display_name || email.split("@")[0].slice(0, 24);
         localStorage.setItem("vngi_name", name);
-        router.push("/");
+        router.push("/challenges");
       }
     } catch (e) {
       setNotice({ kind: "err", text: e.message || "Something went wrong. Try again." });
@@ -120,8 +121,18 @@ export default function SignIn() {
         )}
       </p>
       <p className="authswitch" style={{ marginTop: 6 }}>
-        Or continue as a guest: just pick a challenge and enter a display name.
+        An account keeps your scores, your leaderboard name and your progress in one place.
       </p>
     </main>
+  );
+}
+
+import { Suspense } from "react";
+
+export default function SignIn() {
+  return (
+    <Suspense fallback={<main className="play-wrap"><p className="section-sub">Loading...</p></main>}>
+      <SignInInner />
+    </Suspense>
   );
 }

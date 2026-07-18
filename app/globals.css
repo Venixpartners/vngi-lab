@@ -46,7 +46,8 @@ button { font: inherit; cursor: pointer; }
   font-family: "Inter", system-ui, sans-serif; font-size: 12px; color: var(--slate);
   letter-spacing: 0.14em; text-transform: uppercase;
 }
-.nav { display: flex; gap: 22px; font-family: "Inter", system-ui, sans-serif; font-size: 13px; letter-spacing: 0.06em; }
+.nav { display: flex; gap: 22px; font-family: "Inter", system-ui, sans-serif; font-size: 13px; letter-spacing: 0.06em; order: 1; margin-left: auto; }
+.topbar > .usermenu, .topbar > .usermenu-link { order: 2; margin-left: 22px; }
 .nav a { color: var(--mist); opacity: 0.75; }
 .nav a:hover, .nav a:focus-visible { opacity: 1; color: var(--white); }
 
@@ -308,3 +309,190 @@ button { font: inherit; cursor: pointer; }
 .hmeta { color: var(--slate); font-size: 12.5px; }
 .hdate { color: var(--slate); font-size: 12.5px; text-align: right; }
 .profile-wrap { padding-bottom: 70px; }
+
+/* ============================================================
+   MOBILE RESPONSIVENESS
+   ============================================================ */
+
+/* Prevent iOS from inflating text on rotation */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* Faster, cleaner taps everywhere */
+a, button, .seg { touch-action: manipulation; -webkit-tap-highlight-color: rgba(3,59,189,0.18); }
+
+/* Leaderboard: horizontal scroll container instead of page overflow */
+.board-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -20px; padding: 0 20px; }
+.board { min-width: 480px; }
+
+/* ---------- header: stack on phones ---------- */
+@media (max-width: 700px) {
+  .topbar { flex-wrap: wrap; row-gap: 6px; padding: 14px 0 10px; }
+  .wordmark { order: 1; }
+  .usermenu, .usermenu-link { order: 2; }
+  .nav {
+    order: 3; width: 100%;
+    display: flex; justify-content: flex-start; gap: 0;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 4px -20px 0; padding: 4px 20px 6px;
+    border-top: 1px solid rgba(226,232,240,0.08);
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: 0 0 auto; padding: 10px 14px 8px; white-space: nowrap; font-size: 13.5px; }
+  .nav a:first-child { padding-left: 0; }
+  /* the user menu sits beside the logo on its own row */
+  .topbar > .usermenu, .topbar > .usermenu-link { margin-left: auto; }
+}
+
+/* keep the user menu compact on small screens */
+@media (max-width: 700px) {
+  .usermenu-name { max-width: 92px; font-size: 13px; }
+  .usermenu-out { padding: 6px 10px; }
+  .usermenu-link { font-size: 14px; padding: 8px 0; }
+}
+
+/* ---------- general layout at phone widths ---------- */
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  .board-scroll { margin: 0 -16px; padding: 0 16px; }
+  .nav { margin-left: -16px; margin-right: -16px; padding-left: 16px; padding-right: 16px; }
+
+  .hero { padding: 40px 0 28px; }
+  .hero h1 { font-size: clamp(34px, 11vw, 56px); overflow-wrap: break-word; }
+  .hero p.lede { font-size: 15.5px; }
+  .section-title { font-size: 24px; margin-top: 40px; }
+  .ticker { margin-top: 30px; }
+
+  /* full-width comfortable buttons */
+  .btn { display: block; width: 100%; text-align: center; padding: 15px 20px; font-size: 15px; }
+  .cta-row { flex-direction: column; gap: 10px; }
+  .cta-row .btn { width: 100%; }
+
+  .joinband { padding: 24px 18px; margin-bottom: 56px; }
+  .gapband { padding: 20px 16px; }
+
+  /* forms: 16px minimum stops iOS auto-zoom on focus */
+  .authform input, .namegate input, .namerow input, .authform select { font-size: 16px; padding: 13px 14px; }
+  .namegate, .namerow { flex-direction: column; }
+  .namegate .btn, .namerow .btn { width: 100%; }
+
+  /* leaderboard density */
+  .board td { padding: 10px 8px; font-size: 13.5px; }
+  .board th { padding: 8px; }
+  .board td.rank { width: 40px; font-size: 16px; }
+
+  /* profile */
+  .stat-tiles { grid-template-columns: repeat(2, 1fr); }
+  .badge-grid { grid-template-columns: 1fr; }
+  .hrow { grid-template-columns: 1fr; }
+  .hscore, .hdate { text-align: left; }
+
+  .policy-toc { gap: 10px; }
+  .policy-toc a { padding: 10px 14px; }
+  .footer { flex-direction: column; gap: 6px; padding: 22px 0 34px; }
+}
+
+/* ---------- the Player on touch screens ---------- */
+@media (max-width: 640px) {
+  .play-wrap { padding: 24px 0 60px; }
+  .paper { font-size: 15.5px; line-height: 2.05; margin: 0 -4px; }
+  .paper-head { flex-wrap: wrap; gap: 4px 12px; }
+
+  /* bigger thumb targets for flagging */
+  .seg { padding: 3px 3px; border-radius: 3px; }
+
+  /* keep score + submit visible while scrolling a long document */
+  .play-actions {
+    position: sticky; bottom: 0; z-index: 5;
+    background: var(--navy);
+    margin: 20px -16px 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(226,232,240,0.14);
+    flex-direction: column; align-items: stretch; gap: 8px;
+  }
+  .play-actions .flag-count { text-align: center; order: -1; }
+
+  .backbook h2 { font-size: 26px; }
+  .scoreline strong { font-size: 22px; }
+  .explain .item { padding: 14px; }
+}
+
+/* no hover lift on touch devices (prevents sticky hover states) */
+@media (hover: none) {
+  .card:hover { transform: none; border-color: rgba(226,232,240,0.14); }
+  .seg:hover { background: transparent; }
+  .seg.flagged:hover { background: rgba(3,59,189,0.14); }
+}
+
+/* ============================================================
+   FULL DEVICE RANGE: small phones, large phones, tablets
+   ============================================================ */
+
+/* ---------- comfortable touch targets everywhere ---------- */
+@media (max-width: 700px) {
+  .nav a { padding-top: 12px; padding-bottom: 12px; }
+  .usermenu-out { padding: 8px 12px; font-size: 12px; }
+}
+
+/* ---------- very small phones (320 - 379px) ---------- */
+@media (max-width: 379px) {
+  .container { padding: 0 12px; }
+  .board-scroll { margin: 0 -12px; padding: 0 12px; }
+  .nav { margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; }
+  .play-actions { margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; }
+
+  .logo-img { height: 24px; }
+  .logo-lab { font-size: 15px; padding-left: 9px; }
+  .usermenu-name { max-width: 68px; }
+  .usermenu { gap: 6px; }
+
+  .hero h1 { font-size: clamp(28px, 10.5vw, 40px); }
+  .hero p.lede { font-size: 14.5px; }
+  .section-title { font-size: 21px; }
+  .paper { padding: 18px 14px; font-size: 14.5px; }
+  .stat-tiles { gap: 8px; }
+  .tile { padding: 12px 12px 10px; }
+  .tile-num { font-size: 22px; }
+}
+
+/* ---------- large phones / small tablets portrait (641 - 820px) ---------- */
+@media (min-width: 641px) and (max-width: 820px) {
+  .hero { padding: 56px 0 34px; }
+  .hero h1 { font-size: clamp(40px, 8.5vw, 68px); }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .paper { padding: 28px 26px 22px; }
+}
+
+/* ---------- tablets (701 - 1024px): desktop nav, tuned spacing ---------- */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .container { padding: 0 28px; }
+  .nav { gap: 18px; }
+  .nav a { padding: 8px 2px; }
+  .board-scroll { margin: 0; padding: 0; }
+}
+
+/* ---------- tablet landscape / small laptops (1025 - 1199px) ---------- */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .container { padding: 0 32px; }
+}
+
+/* ---------- phones in landscape (short viewports) ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { padding: 28px 0 20px; }
+  .play-wrap { padding: 18px 0 40px; }
+  /* sticky bar would eat half the screen sideways; let it flow normally */
+  .play-actions {
+    position: static;
+    margin: 20px 0 0; padding: 0;
+    border-top: none; background: transparent;
+    flex-direction: row; align-items: center;
+  }
+  .play-actions .flag-count { order: 0; text-align: left; }
+  .btn { display: inline-block; width: auto; }
+}
+
+/* ---------- long names never break layouts ---------- */
+.board td, .htitle, .usermenu-name, .badge-name { overflow-wrap: anywhere; }
+.usermenu-name { overflow-wrap: normal; } /* keep single-line ellipsis */
+
+/* ---------- respect larger system font settings gracefully ---------- */
+.card h3, .board td, .explain .item { overflow-wrap: break-word; }

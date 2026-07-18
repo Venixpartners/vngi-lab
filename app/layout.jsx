@@ -2,6 +2,12 @@ import "./globals.css";
 import Link from "next/link";
 import UserMenu from "../components/UserMenu";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0F172A",
+};
+
 export const metadata = {
   title: "VNGI Lab | Venix NextGen Initiative",
   description:
@@ -26,12 +32,12 @@ export default function RootLayout({ children }) {
               <img src="/logo-reversed.png" alt="Venix NextGen" className="logo-img" />
               <span className="logo-lab">LAB</span>
             </Link>
+            <UserMenu />
             <nav className="nav" aria-label="Main">
               <Link href="/">About</Link>
               <Link href="/challenges">Challenges</Link>
               <Link href="/leaderboard">Leaderboard</Link>
               <a href="https://venixnextgen.org" target="_blank" rel="noreferrer">VNGI Website</a>
-              <UserMenu />
             </nav>
           </header>
           {children}

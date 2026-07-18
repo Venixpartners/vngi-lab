@@ -22,6 +22,7 @@ export default async function Leaderboard() {
         </p>
       </section>
 
+      <div className="board-scroll">
       <table className="board">
         <thead>
           <tr>
@@ -49,6 +50,7 @@ export default async function Leaderboard() {
           )}
         </tbody>
       </table>
+      </div>
     </main>
   );
 }
